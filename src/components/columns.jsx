@@ -47,6 +47,11 @@ export const columns = (data) => ([
   },
 
   {
+    label: 'Código',
+    name: 'code'
+  },
+
+  {
     label: 'Info',
     name: 'info',
     options: {

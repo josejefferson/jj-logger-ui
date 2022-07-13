@@ -6,6 +6,7 @@ export const defaultData = {
   level: <LinearProgress />,
   info: <LinearProgress />,
   title: <LinearProgress />,
+  code: <LinearProgress />,
   contents: <LinearProgress />,
   details: <LinearProgress />
 }
