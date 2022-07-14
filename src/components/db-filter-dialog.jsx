@@ -47,7 +47,7 @@ export default function DBFilterDialog({ fetchData }) {
   }
 
   const handleSave = () => {
-    if (!validateFilter) return
+    if (!validateFilter()) return
     localStorage.setItem('logs.dbFilter', filter)
     setSaveSnackbar(true)
   }
@@ -85,13 +85,13 @@ export default function DBFilterDialog({ fetchData }) {
           />
 
           <Button fullWidth onClick={handleReset} startIcon={<PublishedWithChangesIcon />}>{lang.dbFilter.dialogReset}</Button>
-          <Button fullWidth onClick={handleSave} startIcon={<TaskAltIcon />}>{lang.dbFilter.dialogSave}</Button>
+          <Button fullWidth onClick={handleSave} startIcon={<TaskAltIcon />} disabled={!validateFilter()}>{lang.dbFilter.dialogSave}</Button>
           <Button fullWidth onClick={handleClear} startIcon={<RestartAltIcon />}>{lang.dbFilter.dialogClear}</Button>
         </DialogContent>
 
         <DialogActions>
           <Button onClick={handleCancel}>{lang.dbFilter.dialogButtonCancel}</Button>
-          <Button onClick={handleOK}>{lang.dbFilter.dialogButtonOK}</Button>
+          <Button onClick={handleOK} disabled={!validateFilter()}>{lang.dbFilter.dialogButtonOK}</Button>
         </DialogActions>
       </Dialog>
 
