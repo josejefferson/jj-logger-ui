@@ -20,7 +20,8 @@ const lang = {
     refresh: 'Atualizar logs',
     downloadJson: 'Baixar JSON',
     uploadJson: 'Importar logs de JSON',
-    dbFilter: 'Filtros em JSON do banco de dados'
+    dbFilter: 'Filtros em JSON do banco de dados',
+    settings: 'Configurar servidor'
   },
   filter: {
     all: 'Todos',
@@ -43,6 +44,17 @@ const lang = {
   dbFilter: {
     dialogTitle: 'Filtros JSON do banco de dados',
     dialogTextFieldLabel: 'JSON',
+    dialogButtonCancel: 'Cancelar',
+    dialogButtonOK: 'OK',
+    dialogReset: 'Redefinir para o padrão',
+    dialogSave: 'Salvar como padrão',
+    dialogClear: 'Limpar filtros'
+  },
+  settings: {
+    dialogTitle: 'Configurar servidor',
+    dialogTextFieldURL: 'URL do servidor',
+    dialogTextFieldUsername: 'Nome de usuário (opcional)',
+    dialogTextFieldPassword: 'Senha (opcional)',
     dialogButtonCancel: 'Cancelar',
     dialogButtonOK: 'OK',
     dialogReset: 'Redefinir para o padrão',

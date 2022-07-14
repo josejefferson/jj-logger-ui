@@ -6,6 +6,7 @@ import DataObjectIcon from '@mui/icons-material/DataObject'
 import HeightIcon from '@mui/icons-material/Height'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import DBFilterDialog from './db-filter-dialog'
+import SettingsDialog from './settings-dialog'
 import { downloadJSON, uploadJSON } from '../utils/json'
 import lang from '../utils/lang'
 
@@ -15,17 +16,17 @@ export const Toolbar = ({
   resizableColumns,
   data,
   setData,
-  dbFilterDialogOpen,
-  setDbFilterDialogOpen,
   fetchData
 }) => () => {
   return (
     <>
       {/* Botão de redimensionar colunas */}
       <Tooltip title={lang.toolbar.adjustColumnWidth} disableFocusListener>
-        <IconButton aria-label={lang.toolbar.adjustColumnWidth} onClick={() => setResizableColumns(!resizableColumns)}>
-          <HeightIcon style={{ transform: 'rotate(90deg)' }} />
-        </IconButton>
+        <span className="resize-columns-btn">
+          <IconButton aria-label={lang.toolbar.adjustColumnWidth} onClick={() => setResizableColumns(!resizableColumns)}>
+            <HeightIcon style={{ transform: 'rotate(90deg)' }} />
+          </IconButton>
+        </span>
       </Tooltip>
 
       {/* Botão de exportar para JSON */}
@@ -43,11 +44,10 @@ export const Toolbar = ({
       </Tooltip>
 
       {/* Botão de filtrar pelo banco de dados */}
-      <DBFilterDialog
-        open={dbFilterDialogOpen}
-        setOpen={setDbFilterDialogOpen}
-        fetchData={(filter) => fetchData(setData, filter)}
-      />
+      <DBFilterDialog fetchData={(filter) => fetchData(setData, filter)} />
+
+      {/* Botão de configurar o servidor */}
+      <SettingsDialog fetchData={(filter) => fetchData(setData, filter)} />
 
       {/* Botão de atualizar dados */}
       <Tooltip title={lang.toolbar.refresh} disableFocusListener>

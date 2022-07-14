@@ -11,7 +11,6 @@ import { Toolbar, FilterDialogFooter } from '../components/custom-parts'
 
 const Logs = () => {
   const [data, setData] = React.useState([defaultData])
-  const [dbFilterDialogOpen, setDbFilterDialogOpen] = React.useState(false)
   const [resizableColumns, setResizableColumns] = React.useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(50)
 
@@ -24,8 +23,6 @@ const Logs = () => {
     resizableColumns,
     data,
     setData,
-    dbFilterDialogOpen,
-    setDbFilterDialogOpen,
     fetchData
   })
 

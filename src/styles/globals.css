@@ -39,3 +39,9 @@ a {
 .content-cell-object > ol > li > div {
 	-webkit-line-clamp: 1;
 }
+
+@media (max-width: 899.95px) {
+	.resize-columns-btn {
+		display: none;
+	}
+}

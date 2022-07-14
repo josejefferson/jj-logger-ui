@@ -1,16 +1,15 @@
 import axios from 'axios'
 import { defaultData, errorData } from '../components/placeholders'
-import getConfig from 'next/config'
-const { publicRuntimeConfig: config } = getConfig()
 
 // Baixa/atualiza os dados
 export default async function fetchData(setData, filter) {
   setData([defaultData])
-  const { data } = await axios.get(config.LOGS_DATA_URL || './data', {
-    auth: (config.LOGS_DATA_USERNAME && config.LOGS_DATA_PASSWORD ? {
-      username: config.LOGS_DATA_USERNAME,
-      password: config.LOGS_DATA_PASSWORD
-    } : undefined),
+  const url = localStorage.getItem('logs.settings.serverURL')
+  const username = localStorage.getItem('logs.settings.serverUsername')
+  const password = localStorage.getItem('logs.settings.serverPassword')
+
+  const { data } = await axios.get(url || './data', {
+    auth: (username && password ? { username, password } : undefined),
     params: {
       q: filter || localStorage.getItem('logs.dbFilter') || '{}'
     }
@@ -20,3 +19,4 @@ export default async function fetchData(setData, filter) {
   })
   setData(data)
 }
+
