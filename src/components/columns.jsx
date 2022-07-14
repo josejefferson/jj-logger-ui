@@ -55,15 +55,13 @@ export const columns = (data) => ([
     label: 'Info',
     name: 'info',
     options: {
+      filter: false,
+      display: false,
       setCellProps: () => ({ style: { whiteSpace: 'nowrap' } }),
-      customHeadLabelRender: (columnMeta) => (
-        <div style={{ whiteSpace: 'nowrap' }}>{columnMeta.label}</div>
-      ),
       customBodyRenderLite: (dataIndex, rowIndex) => {
         if (React.isValidElement(data[dataIndex]?.info)) return data[dataIndex].info
         const hideProduction = data[dataIndex]?.hideProduction
         const hideConsole = data[dataIndex]?.hideConsole
-        const color = data[dataIndex]?.color
 
         return (
           <>
@@ -73,12 +71,23 @@ export const columns = (data) => ([
             <span title="Oculto do console" hidden={!hideConsole}>
               <SpeakerNotesOffIcon style={{ marginLeft: '4px' }} />
             </span>
-            <Color color={color} />
           </>
         )
       }
     }
-    // TODO: filtros
+  },
+
+  {
+    label: 'Cor',
+    name: 'color',
+    options: {
+      setCellProps: () => ({ style: { padding: '0' } }),
+      customBodyRenderLite: (dataIndex, rowIndex) => {
+        if (React.isValidElement(data[dataIndex]?.info)) return data[dataIndex].info
+        const color = data[dataIndex]?.color
+        return <Color color={color} />
+      }
+    }
   },
 
   {
@@ -92,18 +101,20 @@ export const columns = (data) => ([
 
         return value.map((content, i) => {
           if (typeof content === 'object') return (
-            <ObjectInspector key={i}
-              data={value}
-              // @ts-ignore
-              theme={{
-                ...chromeDark,
-                ...({ BASE_BACKGROUND_COLOR: 'transparent' })
-              }}
-            />
+            <span className="content-cell-object">
+              <ObjectInspector key={i}
+                data={content}
+                // @ts-ignore
+                theme={{
+                  ...chromeDark,
+                  ...({ BASE_BACKGROUND_COLOR: 'transparent' })
+                }}
+              />
+            </span>
           )
 
           return (
-            <span style={{ marginRight: '10px' }} key={i}>
+            <span className="content-cell-text" title={content} key={i}>
               {content}
             </span>
           )
@@ -117,6 +128,8 @@ export const columns = (data) => ([
     name: 'details',
     sort: false,
     options: {
+      setCellProps: () => ({ className: 'details-cell' }),
+      filterType: 'textField',
       filterOptions: {
         names: [],
         logic(value, filters, row) {
@@ -124,7 +137,6 @@ export const columns = (data) => ([
           return !(value ?? '').toString().includes(filters[0])
         }
       },
-      filterType: 'textField',
       customBodyRenderLite: (dataIndex, rowIndex) => {
         const value = data[dataIndex]?.details
         if (value === undefined) return <></>
