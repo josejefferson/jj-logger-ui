@@ -1,4 +1,7 @@
 import React from 'react'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/pt-br'
 import { ObjectInspector, chromeDark } from 'react-inspector'
 import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
@@ -6,16 +9,36 @@ import { customDateFilter } from './custom-filters'
 import Pill from './Pill'
 import Color from './Color'
 
+dayjs.locale('pt-br')
+dayjs.extend(relativeTime)
+
 export const columns = (data) => ([
+  {
+    label: 'ID',
+    name: '_id',
+    options: {
+      display: false,
+      filterType: 'textField',
+      setCellProps: () => ({ style: { whiteSpace: 'nowrap' } })
+    }
+  },
+
   {
     label: 'Tempo',
     name: 'date',
     options: {
       filterType: 'custom',
       setCellProps: () => ({ style: { whiteSpace: 'nowrap' } }),
-      customBodyRender: (value) => {
+      customBodyRenderLite: (dataIndex) => {
+        const value = data[dataIndex]?.date
         if (isNaN(Number(new Date(value)))) return value
-        return new Date(value).toLocaleString()
+
+        return (
+          <small>
+            <div>{dayjs(value).format('HH:mm:ss DD/MM/YY')}</div>
+            <div><small>{dayjs(value).fromNow()}</small></div>
+          </small>
+        )
       },
       customFilterListOptions: customDateFilter.customFilterListOptions,
       filterOptions: customDateFilter.filterOptions
@@ -48,7 +71,10 @@ export const columns = (data) => ([
 
   {
     label: 'Código',
-    name: 'code'
+    name: 'code',
+    options: {
+      display: false
+    }
   },
 
   {
@@ -58,7 +84,7 @@ export const columns = (data) => ([
       filter: false,
       display: false,
       setCellProps: () => ({ style: { whiteSpace: 'nowrap' } }),
-      customBodyRenderLite: (dataIndex, rowIndex) => {
+      customBodyRenderLite: (dataIndex) => {
         if (React.isValidElement(data[dataIndex]?.info)) return data[dataIndex].info
         const hideProduction = data[dataIndex]?.hideProduction
         const hideConsole = data[dataIndex]?.hideConsole
@@ -82,7 +108,7 @@ export const columns = (data) => ([
     name: 'color',
     options: {
       setCellProps: () => ({ style: { padding: '0' } }),
-      customBodyRenderLite: (dataIndex, rowIndex) => {
+      customBodyRenderLite: (dataIndex) => {
         if (React.isValidElement(data[dataIndex]?.info)) return data[dataIndex].info
         const color = data[dataIndex]?.color
         return <Color color={color} />
@@ -132,12 +158,12 @@ export const columns = (data) => ([
       filterType: 'textField',
       filterOptions: {
         names: [],
-        logic(value, filters, row) {
+        logic(value, filters) {
           try { value = JSON.stringify(value) } catch { }
           return !(value ?? '').toString().includes(filters[0])
         }
       },
-      customBodyRenderLite: (dataIndex, rowIndex) => {
+      customBodyRenderLite: (dataIndex) => {
         const value = data[dataIndex]?.details
         if (value === undefined) return <></>
         if (React.isValidElement(value)) return value
