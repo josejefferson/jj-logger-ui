@@ -14,18 +14,17 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import TaskAltIcon from '@mui/icons-material/TaskAlt'
 import lang from '../utils/lang'
 
-export default function DBFilterDialog({ fetchData }) {
+export default function DBFilterDialog({ fetchData, filter, setFilter }) {
   const [open, setOpen] = React.useState(false)
-  const [filter, setFilter] = React.useState()
+  const [value, setValue] = React.useState(filter)
   const [saveSnackbar, setSaveSnackbar] = React.useState(false)
 
-  React.useEffect(() => {
-    setFilter(localStorage.getItem('logs.dbFilter') || '{}')
-  }, [])
+  React.useEffect(() => { setValue(filter) }, [filter])
 
   const handleOK = () => {
     setOpen(false)
-    fetchData(filter)
+    setFilter(value)
+    fetchData(value)
   }
 
   const handleCancel = () => {
@@ -34,7 +33,7 @@ export default function DBFilterDialog({ fetchData }) {
 
   const validateFilter = () => {
     try {
-      const result = JSON.parse(filter)
+      const result = JSON.parse(value)
       return typeof result === 'object'
     } catch {
       return false
@@ -43,17 +42,17 @@ export default function DBFilterDialog({ fetchData }) {
 
   const handleReset = () => {
     const defaultFilter = localStorage.getItem('logs.dbFilter')
-    setFilter(defaultFilter || '{}')
+    setValue(defaultFilter || '{}')
   }
 
   const handleSave = () => {
     if (!validateFilter()) return
-    localStorage.setItem('logs.dbFilter', filter)
+    localStorage.setItem('logs.dbFilter', value)
     setSaveSnackbar(true)
   }
 
   const handleClear = () => {
-    setFilter('{}')
+    setValue('{}')
   }
 
   return (
@@ -77,10 +76,10 @@ export default function DBFilterDialog({ fetchData }) {
             label={lang.dbFilter.dialogTextFieldLabel}
             margin="dense"
             multiline
-            onChange={(e) => setFilter(e.target.value)}
+            onChange={(e) => setValue(e.target.value)}
             rows={4}
             sx={{ mb: 2 }}
-            value={filter}
+            value={value}
             variant="filled"
           />
 

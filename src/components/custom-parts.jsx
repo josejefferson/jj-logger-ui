@@ -16,7 +16,9 @@ export const Toolbar = ({
   resizableColumns,
   data,
   setData,
-  fetchData
+  fetchData,
+  filter,
+  setFilter
 }) => () => {
   return (
     <>
@@ -44,14 +46,14 @@ export const Toolbar = ({
       </Tooltip>
 
       {/* Botão de filtrar pelo banco de dados */}
-      <DBFilterDialog fetchData={(filter) => fetchData(setData, filter)} />
+      <DBFilterDialog fetchData={(filter) => fetchData(setData, filter)} filter={filter} setFilter={setFilter} />
 
       {/* Botão de configurar o servidor */}
       <SettingsDialog fetchData={(filter) => fetchData(setData, filter)} />
 
       {/* Botão de atualizar dados */}
       <Tooltip title={lang.toolbar.refresh} disableFocusListener>
-        <IconButton aria-label={lang.toolbar.refresh} onClick={() => fetchData(setData)}>
+        <IconButton aria-label={lang.toolbar.refresh} onClick={() => fetchData(setData, filter)}>
           <RefreshIcon />
         </IconButton>
       </Tooltip>

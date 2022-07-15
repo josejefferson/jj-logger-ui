@@ -13,9 +13,15 @@ const Logs = () => {
   const [data, setData] = React.useState([defaultData])
   const [resizableColumns, setResizableColumns] = React.useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(50)
+  const [filter, setFilter] = React.useState()
+
+  React.useEffect(() => {
+    setFilter(localStorage.getItem('logs.dbFilter') || '{}')
+  }, [])
 
   // Baixa os dados
-  React.useEffect(() => { fetchData(setData) }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(() => { fetchData(setData, filter) }, [filter])
 
   // Barra de ferramentas personalizada
   const customToolbar = Toolbar({
@@ -23,7 +29,9 @@ const Logs = () => {
     resizableColumns,
     data,
     setData,
-    fetchData
+    fetchData,
+    filter,
+    setFilter
   })
 
   // Opções do MUIDataTables
