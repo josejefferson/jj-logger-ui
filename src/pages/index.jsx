@@ -60,7 +60,7 @@ const Logs = () => {
     const currentServerID = localStorage.getItem('logs.servers.current') || ''
     const currentServer = servers.find(server => server.id === currentServerID) || {}
     console.log(currentServer)
-    currentServerName.current = (!currentServer.name || currentServer.name === '(Servidor padrão)') ? '' : `- ${currentServer.name}`
+    currentServerName.current = (!currentServer.name || currentServer.name === '(Servidor padrão)') ? '' : ` - ${currentServer.name}`
   })
 
   return (
