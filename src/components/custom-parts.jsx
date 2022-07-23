@@ -6,7 +6,7 @@ import DataObjectIcon from '@mui/icons-material/DataObject'
 import HeightIcon from '@mui/icons-material/Height'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import DBFilterDialog from './db-filter-dialog'
-import SettingsDialog from './settings-dialog'
+import ServersDialog from './servers-dialog'
 import { downloadJSON, uploadJSON } from '../utils/json'
 import lang from '../utils/lang'
 
@@ -48,8 +48,8 @@ export const Toolbar = ({
       {/* Botão de filtrar pelo banco de dados */}
       <DBFilterDialog fetchData={(filter) => fetchData(setData, filter)} filter={filter} setFilter={setFilter} />
 
-      {/* Botão de configurar o servidor */}
-      <SettingsDialog fetchData={(filter) => fetchData(setData, filter)} />
+      {/* Botão de configurar os servidores */}
+      <ServersDialog fetchData={(filter) => fetchData(setData, filter)} />
 
       {/* Botão de atualizar dados */}
       <Tooltip title={lang.toolbar.refresh} disableFocusListener>

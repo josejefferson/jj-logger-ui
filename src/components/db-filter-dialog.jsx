@@ -64,7 +64,7 @@ export default function DBFilterDialog({ fetchData, filter, setFilter }) {
       </Tooltip>
 
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>{lang.dbFilter.dialogTitle}</DialogTitle>
+        <DialogTitle>Filtros JSON do banco de dados</DialogTitle>
 
         <DialogContent>
           <TextField
@@ -73,7 +73,7 @@ export default function DBFilterDialog({ fetchData, filter, setFilter }) {
             fullWidth
             helperText={!validateFilter() && 'JSON inválido'}
             InputProps={{ style: { fontFamily: 'monospace' } }}
-            label={lang.dbFilter.dialogTextFieldLabel}
+            label="JSON"
             margin="dense"
             multiline
             onChange={(e) => setValue(e.target.value)}
@@ -83,14 +83,14 @@ export default function DBFilterDialog({ fetchData, filter, setFilter }) {
             variant="filled"
           />
 
-          <Button fullWidth onClick={handleReset} startIcon={<PublishedWithChangesIcon />}>{lang.dbFilter.dialogReset}</Button>
-          <Button fullWidth onClick={handleSave} startIcon={<TaskAltIcon />} disabled={!validateFilter()}>{lang.dbFilter.dialogSave}</Button>
-          <Button fullWidth onClick={handleClear} startIcon={<RestartAltIcon />}>{lang.dbFilter.dialogClear}</Button>
+          <Button fullWidth onClick={handleReset} startIcon={<PublishedWithChangesIcon />}>Redefinir para o padrão</Button>
+          <Button fullWidth onClick={handleSave} startIcon={<TaskAltIcon />} disabled={!validateFilter()}>Salvar como padrão</Button>
+          <Button fullWidth onClick={handleClear} startIcon={<RestartAltIcon />}>Limpar filtros</Button>
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleCancel}>{lang.dbFilter.dialogButtonCancel}</Button>
-          <Button onClick={handleOK} disabled={!validateFilter()}>{lang.dbFilter.dialogButtonOK}</Button>
+          <Button onClick={handleCancel}>Cancelar</Button>
+          <Button onClick={handleOK} disabled={!validateFilter()}>OK</Button>
         </DialogActions>
       </Dialog>
 

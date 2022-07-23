@@ -1,3 +1,16 @@
+export function jsonParse(text, reviver, defaultValue = {}, noDefaultValue = false) {
+  if (noDefaultValue) defaultValue = undefined
+  if (typeof text === 'object' && text !== null) {
+    return text || defaultValue
+  } else {
+    try {
+      return JSON.parse(text, reviver) || defaultValue
+    } catch {
+      return defaultValue
+    }
+  }
+}
+
 export function downloadJSON(data) {
   const json = JSON.stringify(data)
   const blob = new Blob([json], { type: 'octet/stream' })

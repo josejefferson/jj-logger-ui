@@ -17,5 +17,5 @@ export const errorData = {
   level: 'ERROR',
   title: <span>Erro</span>,
   contents: <span>Ocorreu um erro ao baixar os logs</span>,
-  details: <span>Atualize para tentar novamente</span>
+  details: <span>Confira as configurações do servidor ou atualize para tentar novamente</span>
 }
