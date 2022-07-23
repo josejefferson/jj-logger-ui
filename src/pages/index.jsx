@@ -60,13 +60,13 @@ const Logs = () => {
     const currentServerID = localStorage.getItem('logs.servers.current') || ''
     const currentServer = servers.find(server => server.id === currentServerID) || {}
     console.log(currentServer)
-    currentServerName.current = (!currentServer.name || currentServer.name === '(Servidor padrão)') ? '' : ` (${currentServer.name})`
+    currentServerName.current = (!currentServer.name || currentServer.name === '(Servidor padrão)') ? '' : `- ${currentServer.name}`
   })
 
   return (
     <>
       <Head>
-        <title>Logs</title>
+        <title>{'Logs' + currentServerName.current}</title>
       </Head>
       <ThemeProvider theme={defaultMaterialTheme}>
         <MUIDataTable
