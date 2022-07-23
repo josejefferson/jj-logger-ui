@@ -147,7 +147,7 @@ export default function SettingsDialog({ fetchData }) {
                   </Tooltip>
                 </>}
               >
-                <ListItemButton>
+                <ListItemButton style={{ paddingRight: 140 }}>
                   <ListItemText primary={server.name} />
                 </ListItemButton>
               </ListItem>

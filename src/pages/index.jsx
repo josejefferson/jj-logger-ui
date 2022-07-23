@@ -4,6 +4,7 @@ import MUIDataTable from 'mui-datatables'
 import { ThemeProvider } from '@mui/material/styles'
 import defaultMaterialTheme from '../utils/theme'
 import lang from '../utils/lang'
+import { jsonParse } from '../utils/json'
 import fetchData from '../utils/fetchData'
 import { columns } from '../components/columns'
 import { defaultData } from '../components/placeholders'
@@ -53,6 +54,15 @@ const Logs = () => {
     textLabels: lang
   }
 
+  let currentServerName = React.useRef('')
+  React.useEffect(() => {
+    const servers = jsonParse(localStorage.getItem('logs.servers'), null, [])
+    const currentServerID = localStorage.getItem('logs.servers.current') || ''
+    const currentServer = servers.find(server => server.id === currentServerID) || {}
+    console.log(currentServer)
+    currentServerName.current = (!currentServer.name || currentServer.name === '(Servidor padrão)') ? '' : ` (${currentServer.name})`
+  })
+
   return (
     <>
       <Head>
@@ -60,7 +70,7 @@ const Logs = () => {
       </Head>
       <ThemeProvider theme={defaultMaterialTheme}>
         <MUIDataTable
-          title={'Logs'}
+          title={'Logs' + currentServerName.current}
           className="no-border-radius"
           data={data}
           columns={columns(data)}
