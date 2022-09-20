@@ -59,7 +59,6 @@ const Logs = () => {
     const servers = jsonParse(localStorage.getItem('logs.servers'), null, [])
     const currentServerID = localStorage.getItem('logs.servers.current') || ''
     const currentServer = servers.find(server => server.id === currentServerID) || {}
-    console.log(currentServer)
     currentServerName.current = (!currentServer.name || currentServer.name === '(Servidor padrão)') ? '' : ` - ${currentServer.name}`
   })
 
