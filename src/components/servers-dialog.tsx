@@ -122,7 +122,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 	) => {
 		e.stopPropagation()
 		if (confirm(`Remover o servidor "${server.name}"?`)) {
-			setServers(servers.filter((s) => s.id !== server.id))
+			setServers(servers?.filter((s) => s.id !== server.id))
 		}
 	}
 
