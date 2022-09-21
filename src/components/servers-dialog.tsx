@@ -38,7 +38,7 @@ interface IProps {
 
 export default function ServersDialog({ fetchData }: IProps) {
 	const [open, setOpen] = React.useState(false)
-	const [servers, setServers] = React.useState<IServer[]>([])
+	const [servers, setServers] = React.useState<IServer[]>()
 	const [currentServerID, setCurrentServerID] = React.useState<string>()
 	const currentServer = () =>
 		servers?.find((server) => server.id === currentServerID)
