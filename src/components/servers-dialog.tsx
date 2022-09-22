@@ -26,7 +26,7 @@ const defaultServer: IServer[] = [
 	{
 		id: uuidv4(),
 		name: '(Servidor padrão)',
-		url: './data',
+		url: '',
 		username: '',
 		password: ''
 	}
@@ -36,16 +36,19 @@ interface IProps {
 	fetchData: (filter?: string | undefined) => Promise<void>
 }
 
+interface ICurrentEditingServer {
+	server: IServer
+	editing: boolean
+}
+
 export default function ServersDialog({ fetchData }: IProps) {
 	const [open, setOpen] = React.useState(false)
 	const [servers, setServers] = React.useState<IServer[]>()
 	const [currentServerID, setCurrentServerID] = React.useState<string>()
 	const currentServer = () =>
 		servers?.find((server) => server.id === currentServerID)
-	const [currentEditing, setCurrentEditing] = React.useState<{
-		server: IServer
-		editing: boolean
-	} | null>(null)
+	const [currentEditing, setCurrentEditing] =
+		React.useState<ICurrentEditingServer | null>(null)
 
 	React.useEffect(() => {
 		const savedServers = jsonParse(
@@ -54,18 +57,22 @@ export default function ServersDialog({ fetchData }: IProps) {
 			defaultServer
 		)
 		setServers(savedServers)
-		const currentServerName = new URLSearchParams(window.location.search).get(
-			'server'
-		)
+		const urlParams = new URLSearchParams(window.location.search)
+		const currentServerName = urlParams.get('server')
 		const selectedServer = savedServers.find(
 			(server: IServer) => server.name === currentServerName
 		)
 		if (currentServerName && selectedServer) {
 			setCurrentServerID(selectedServer.id)
 		} else {
-			setCurrentServerID(
-				localStorage.getItem('logs.servers.current') || defaultServer[0].id
-			)
+			const currentServerID = localStorage.getItem('logs.servers.current')
+			setCurrentServerID(currentServerID || defaultServer[0].id)
+			if (!currentServerID) {
+				const server = defaultServer[0]
+				const openEditor = () => setCurrentEditing({ server, editing: true })
+				setOpen(true)
+				setTimeout(openEditor, 100)
+			}
 		}
 	}, [])
 

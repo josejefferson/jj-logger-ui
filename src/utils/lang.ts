@@ -20,7 +20,7 @@ const lang = {
 		viewColumns: 'Colunas visíveis',
 		filterTable: 'Filtrar tabela',
 		adjustColumnWidth: 'Ajustar largura das colunas',
-		refresh: 'Atualizar logs',
+		refresh: 'Atualizar logs (botão direito = auto atualizar)',
 		downloadJson: 'Baixar JSON',
 		uploadJson: 'Importar logs de JSON',
 		dbFilter: 'Filtros em JSON do banco de dados',

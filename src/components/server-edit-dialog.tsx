@@ -54,7 +54,6 @@ export default function ServerEditDialog({
 
 				<DialogContent>
 					<TextField
-						autoFocus
 						fullWidth
 						label="Nome do servidor"
 						margin="dense"
@@ -64,6 +63,7 @@ export default function ServerEditDialog({
 					/>
 
 					<TextField
+						autoFocus
 						fullWidth
 						label="URL do servidor"
 						margin="none"

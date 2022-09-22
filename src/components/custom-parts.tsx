@@ -1,7 +1,6 @@
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import DataObjectIcon from '@mui/icons-material/DataObject'
 import HeightIcon from '@mui/icons-material/Height'
-import RefreshIcon from '@mui/icons-material/Refresh'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
@@ -10,6 +9,7 @@ import { IData } from 'src/types'
 import fetchData from '../utils/fetchData'
 import { downloadJSON, uploadJSON } from '../utils/json'
 import lang from '../utils/lang'
+import AutoRefreshDialog from './auto-refresh-dialog'
 import DBFilterDialog from './db-filter-dialog'
 import ServersDialog from './servers-dialog'
 
@@ -82,14 +82,12 @@ export const Toolbar =
 				/>
 
 				{/* Botão de atualizar dados */}
-				<Tooltip title={lang.toolbar.refresh} disableFocusListener>
-					<IconButton
-						aria-label={lang.toolbar.refresh}
-						onClick={() => fetchData(setData, filter)}
-					>
-						<RefreshIcon />
-					</IconButton>
-				</Tooltip>
+				<AutoRefreshDialog
+					fetchData={(filter: string | undefined) => fetchData(setData, filter)}
+					filter={filter}
+					data={data}
+					setData={setData}
+				/>
 			</>
 		)
 	}
