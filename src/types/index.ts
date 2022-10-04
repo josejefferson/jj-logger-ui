@@ -1,9 +1,11 @@
 export interface IServer {
 	id: string
+	type: 0 | 1
 	name: string
 	url: string
 	username: string
 	password: string
+	mongoDB?: string
 }
 
 export interface IData {

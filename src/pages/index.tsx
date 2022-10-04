@@ -1,18 +1,15 @@
-import React from 'react'
-import Head from 'next/head'
-import MUIDataTable, {
-	MUIDataTableOptions,
-	MUIDataTableProps
-} from 'mui-datatables'
 import { ThemeProvider } from '@mui/material/styles'
-import defaultMaterialTheme from '../utils/theme'
-import lang from '../utils/lang'
-import { jsonParse } from '../utils/json'
-import fetchData from '../utils/fetchData'
-import { columns } from '../components/columns'
-import { defaultData } from '../components/placeholders'
-import { Toolbar, FilterDialogFooter } from '../components/custom-parts'
+import MUIDataTable, { MUIDataTableOptions } from 'mui-datatables'
+import Head from 'next/head'
+import React from 'react'
 import { IData, IServer } from 'src/types'
+import { columns } from '../components/columns'
+import { FilterDialogFooter, Toolbar } from '../components/custom-parts'
+import { defaultData } from '../components/placeholders'
+import fetchData from '../utils/fetch-data'
+import { jsonParse } from '../utils/json'
+import lang from '../utils/lang'
+import defaultMaterialTheme from '../utils/theme'
 
 const Logs = () => {
 	const [data, setData] = React.useState<IData[]>([defaultData])

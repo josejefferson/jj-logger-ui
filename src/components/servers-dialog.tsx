@@ -25,10 +25,12 @@ import ServerEditDialog, { IOnDone } from './server-edit-dialog'
 const defaultServer: IServer[] = [
 	{
 		id: uuidv4(),
+		type: 0,
 		name: '(Servidor padrão)',
 		url: '',
 		username: '',
-		password: ''
+		password: '',
+		mongoDB: ''
 	}
 ]
 
@@ -90,10 +92,12 @@ export default function ServersDialog({ fetchData }: IProps) {
 	const handleServerAdd = () => {
 		const newServer = {
 			id: uuidv4(),
+			type: 0 as 0,
 			name: '',
 			url: '',
 			username: '',
-			password: ''
+			password: '',
+			mongoDB: ''
 		}
 
 		setCurrentEditing({ server: newServer, editing: false })

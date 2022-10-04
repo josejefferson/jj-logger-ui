@@ -7,9 +7,9 @@ import type { MUIDataTableColumnDef } from 'mui-datatables'
 import React from 'react'
 import { chromeDark, ObjectInspector } from 'react-inspector'
 import { IData } from 'src/types'
-import Color from './Color'
+import Color from './color'
 import { customDateFilter } from './custom-filters'
-import Pill from './Pill'
+import Pill from './pill'
 
 dayjs.locale('pt-br')
 dayjs.extend(relativeTime)
