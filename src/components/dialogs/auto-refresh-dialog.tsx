@@ -14,8 +14,8 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { IData } from 'src/types'
 import { getFetchedData } from 'src/utils/fetch-data'
-import lang from '../utils/lang'
-import { defaultData, errorData, notConfigured } from './placeholders'
+import lang from '../../utils/lang'
+import { defaultData, errorData, notConfigured } from '../placeholders'
 
 interface IProps {
 	fetchData: (filter?: string | undefined) => Promise<void>

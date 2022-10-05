@@ -24,7 +24,7 @@ const lang = {
 		downloadJson: 'Baixar JSON',
 		uploadJson: 'Importar logs de JSON',
 		dbFilter: 'Filtros em JSON do banco de dados',
-		settings: 'Configurar servidores de logs'
+		settings: 'Configurar servidores de logs (botão direito = importar/exportar)'
 	},
 	filter: {
 		all: 'Todos',

@@ -12,7 +12,7 @@ import Snackbar from '@mui/material/Snackbar'
 import TextField from '@mui/material/TextField'
 import Tooltip from '@mui/material/Tooltip'
 import React from 'react'
-import lang from '../utils/lang'
+import lang from '../../utils/lang'
 
 interface IProps {
 	fetchData: (filter?: string | undefined) => Promise<void>

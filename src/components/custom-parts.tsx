@@ -9,9 +9,9 @@ import { IData } from 'src/types'
 import fetchData from '../utils/fetch-data'
 import { downloadJSON, uploadJSON } from '../utils/json'
 import lang from '../utils/lang'
-import AutoRefreshDialog from './auto-refresh-dialog'
-import DBFilterDialog from './db-filter-dialog'
-import ServersDialog from './servers-dialog'
+import AutoRefreshDialog from './dialogs/auto-refresh-dialog'
+import DBFilterDialog from './dialogs/db-filter-dialog'
+import ServersDialog from './dialogs/servers-dialog'
 
 interface IProps {
 	setResizableColumns: React.Dispatch<React.SetStateAction<boolean>>
