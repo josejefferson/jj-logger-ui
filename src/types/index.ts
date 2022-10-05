@@ -6,6 +6,7 @@ export interface IServer {
 	username: string
 	password: string
 	mongoDB?: string
+	mongoDBCollection?: string
 }
 
 export interface IData {

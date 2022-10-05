@@ -32,6 +32,9 @@ export default function ServerEditDialog({
 	const [serverUsername, setServerUsername] = React.useState(server?.username)
 	const [serverPassword, setServerPassword] = React.useState(server?.password)
 	const [mongoDBURL, setMongoDBURL] = React.useState(server?.mongoDB)
+	const [mongoDBCollection, setMongoDBCollection] = React.useState(
+		server?.mongoDBCollection
+	)
 	const [type, setType] = React.useState(server?.type || 0)
 
 	const handleOK = () => {
@@ -45,7 +48,8 @@ export default function ServerEditDialog({
 				url: serverURL,
 				username: serverUsername,
 				password: serverPassword,
-				mongoDB: mongoDBURL
+				mongoDB: mongoDBURL,
+				mongoDBCollection: mongoDBCollection
 			}
 		})
 	}
@@ -63,7 +67,7 @@ export default function ServerEditDialog({
 
 	return (
 		<>
-			<Dialog open={!!server} onClose={handleCancel}>
+			<Dialog open={!!server} onClose={handleCancel} scroll="body">
 				<DialogTitle>{editing ? 'Editar' : 'Adicionar'} servidor</DialogTitle>
 
 				<DialogContent>
@@ -98,7 +102,7 @@ export default function ServerEditDialog({
 
 						<TextField
 							fullWidth
-							label="Nome de usuário (opcional)"
+							label="Login (opcional)"
 							margin="none"
 							onChange={(e) => setServerUsername(e.target.value)}
 							size="small"
@@ -127,13 +131,25 @@ export default function ServerEditDialog({
 							autoFocus
 							fullWidth
 							label="URL do MongoDB"
+							placeholder="mongodb+srv://..."
 							margin="none"
 							onChange={(e) => setMongoDBURL(e.target.value)}
 							sx={{ mb: 2 }}
 							value={mongoDBURL}
 						/>
 
-						<Box height={(40 + 16) * 2}></Box>
+						<TextField
+							fullWidth
+							label="Coleção do MongoDB (opcional)"
+							placeholder="logs"
+							margin="none"
+							onChange={(e) => setMongoDBCollection(e.target.value)}
+							size="small"
+							sx={{ mb: 2 }}
+							value={mongoDBCollection}
+						/>
+
+						<Box height={(40 + 16) * 1}></Box>
 					</Box>
 				</DialogContent>
 

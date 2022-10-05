@@ -30,7 +30,8 @@ const defaultServer: IServer[] = [
 		url: '',
 		username: '',
 		password: '',
-		mongoDB: ''
+		mongoDB: '',
+		mongoDBCollection: ''
 	}
 ]
 
@@ -97,13 +98,20 @@ export default function ServersDialog({ fetchData }: IProps) {
 			url: '',
 			username: '',
 			password: '',
-			mongoDB: ''
+			mongoDB: '',
+			mongoDBCollection: ''
 		}
 
 		setCurrentEditing({ server: newServer, editing: false })
 	}
 
 	const handleChangeCurrentServer = (server: IServer) => {
+		const url = new URL(location.href)
+		if (url.searchParams.get('server')) {
+			url.searchParams.set('server', server.name)
+			const path = (url.pathname || '') + (url.search || '') + (url.hash || '')
+			history?.replaceState?.(undefined, '', path)
+		}
 		setCurrentServerID(server.id)
 	}
 

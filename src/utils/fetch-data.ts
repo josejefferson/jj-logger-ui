@@ -45,10 +45,13 @@ export async function getFetchedData(filter?: string, afterDate?: Date) {
 	)
 
 	if (!currentServer) throw new Error('Server not configured')
-	let { type, url, username, password, mongoDB } = currentServer
+	let { type, url, username, password, mongoDB, mongoDBCollection } =
+		currentServer
 	if (!url && !mongoDB) throw new Error('Server not configured')
 	if (type === 1) {
 		url = '/api/mongodb?url=' + encodeURIComponent(mongoDB || '')
+		if (mongoDBCollection)
+			url += '&collection=' + encodeURIComponent(mongoDBCollection || '')
 	}
 
 	const options = {
