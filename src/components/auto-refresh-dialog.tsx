@@ -157,7 +157,7 @@ export default function AutoRefreshDialog({
 				</IconButton>
 			</Tooltip>
 
-			<Dialog open={open} onClose={() => setOpen(false)}>
+			<Dialog open={open} onClose={() => setOpen(false)} scroll="body">
 				<DialogTitle>
 					Atualizar automaticamente
 					<Switch

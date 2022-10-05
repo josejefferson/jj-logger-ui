@@ -78,7 +78,7 @@ export default function DBFilterDialog({
 				</IconButton>
 			</Tooltip>
 
-			<Dialog open={open} onClose={() => setOpen(false)}>
+			<Dialog open={open} onClose={() => setOpen(false)} scroll="body">
 				<DialogTitle>Filtros JSON do banco de dados</DialogTitle>
 
 				<DialogContent>

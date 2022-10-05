@@ -20,6 +20,7 @@ import { IServer } from 'src/types'
 import { v4 as uuidv4 } from 'uuid'
 import { jsonParse } from '../utils/json'
 import lang from '../utils/lang'
+import ImportExportDialog from './import-export-dialog'
 import ServerEditDialog, { IOnDone } from './server-edit-dialog'
 
 const defaultServer: IServer[] = [
@@ -46,6 +47,7 @@ interface ICurrentEditingServer {
 
 export default function ServersDialog({ fetchData }: IProps) {
 	const [open, setOpen] = React.useState(false)
+	const [impExpDialogOpen, setImpExpDialogOpen] = React.useState(false)
 	const [servers, setServers] = React.useState<IServer[]>()
 	const [currentServerID, setCurrentServerID] = React.useState<string>()
 	const currentServer = () =>
@@ -163,12 +165,20 @@ export default function ServersDialog({ fetchData }: IProps) {
 		}
 	}
 
+	const handleContextMenu = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) => {
+		e.preventDefault()
+		setImpExpDialogOpen(true)
+	}
+
 	return (
 		<>
 			<Tooltip title={lang.toolbar.settings} disableFocusListener>
 				<IconButton
 					aria-label={lang.toolbar.settings}
 					onClick={() => setOpen(true)}
+					onContextMenu={handleContextMenu}
 				>
 					<StorageIcon />
 				</IconButton>
@@ -182,7 +192,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 				/>
 			)}
 
-			<Dialog open={open} onClose={() => setOpen(false)}>
+			<Dialog open={open} onClose={() => setOpen(false)} scroll="body">
 				<DialogTitle>Configurar servidores de logs</DialogTitle>
 
 				<DialogContent sx={{ minWidth: 280, paddingLeft: 0, paddingRight: 0 }}>
@@ -235,6 +245,13 @@ export default function ServersDialog({ fetchData }: IProps) {
 					<Button onClick={handleOK}>OK</Button>
 				</DialogActions>
 			</Dialog>
+
+			{/* Importar e exportar servidores */}
+			<ImportExportDialog
+				open={impExpDialogOpen}
+				setOpen={setImpExpDialogOpen}
+				// fetchData={(filter: string | undefined) => fetchData(setData, filter)}
+			/>
 		</>
 	)
 }
