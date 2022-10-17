@@ -1,8 +1,11 @@
 import { createTheme } from '@mui/material/styles'
 
+const lightTheme =
+	typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('lightTheme')
+
 // CSS personalizados
 export default createTheme({
-	palette: { mode: 'dark' },
+	palette: { mode: lightTheme ? 'light' : 'dark' },
 	components: {
 		// @ts-ignore
 		MUIDataTableBodyCell: {
