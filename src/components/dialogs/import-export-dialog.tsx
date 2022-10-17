@@ -17,7 +17,7 @@ interface IProps {
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function AutoRefreshDialog({ open, setOpen }: IProps) {
+export default function ImportExportDialog({ open, setOpen }: IProps) {
 	const [successSnackBarOpen, setSuccessSnackBarOpen] = React.useState(false)
 	const [errorSnackBarOpen, setErrorSnackBarOpen] = React.useState(false)
 	const [errorMessage, setErrorMessage] = React.useState('Erro desconhecido')

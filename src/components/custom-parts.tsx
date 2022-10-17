@@ -51,20 +51,14 @@ export const Toolbar =
 
 				{/* Botão de exportar para JSON */}
 				<Tooltip title={lang.toolbar.downloadJson} disableFocusListener>
-					<IconButton
-						aria-label={lang.toolbar.downloadJson}
-						onClick={() => downloadJSON(data)}
-					>
+					<IconButton aria-label={lang.toolbar.downloadJson} onClick={() => downloadJSON(data)}>
 						<DataObjectIcon />
 					</IconButton>
 				</Tooltip>
 
 				{/* Botão de importar logs de arquivo JSON */}
 				<Tooltip title={lang.toolbar.uploadJson} disableFocusListener>
-					<IconButton
-						aria-label={lang.toolbar.uploadJson}
-						onClick={() => uploadJSON(setData)}
-					>
+					<IconButton aria-label={lang.toolbar.uploadJson} onClick={() => uploadJSON(setData)}>
 						<CloudUploadIcon />
 					</IconButton>
 				</Tooltip>
@@ -77,9 +71,10 @@ export const Toolbar =
 				/>
 
 				{/* Botão de configurar os servidores */}
-				<ServersDialog
-					fetchData={(filter: string | undefined) => fetchData(setData, filter)}
-				/>
+				{typeof window !== 'undefined' &&
+					!new URLSearchParams(window.location.search).get('useFrameParentData') && (
+						<ServersDialog fetchData={(filter: string | undefined) => fetchData(setData, filter)} />
+					)}
 
 				{/* Botão de atualizar dados */}
 				<AutoRefreshDialog
@@ -92,13 +87,15 @@ export const Toolbar =
 		)
 	}
 
-export const FilterDialogFooter: MUIDataTableOptions['customFilterDialogFooter'] =
-	(currentFilterList, applyNewFilters) => {
-		return (
-			<div style={{ marginTop: '40px' }}>
-				<Button variant="contained" onClick={applyNewFilters}>
-					{lang.filter.apply}
-				</Button>
-			</div>
-		)
-	}
+export const FilterDialogFooter: MUIDataTableOptions['customFilterDialogFooter'] = (
+	currentFilterList,
+	applyNewFilters
+) => {
+	return (
+		<div style={{ marginTop: '40px' }}>
+			<Button variant="contained" onClick={applyNewFilters}>
+				{lang.filter.apply}
+			</Button>
+		</div>
+	)
+}

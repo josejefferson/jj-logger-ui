@@ -250,7 +250,6 @@ export default function ServersDialog({ fetchData }: IProps) {
 			<ImportExportDialog
 				open={impExpDialogOpen}
 				setOpen={setImpExpDialogOpen}
-				// fetchData={(filter: string | undefined) => fetchData(setData, filter)}
 			/>
 		</>
 	)
