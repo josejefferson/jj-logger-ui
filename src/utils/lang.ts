@@ -4,8 +4,7 @@ const lang = {
 	body: {
 		noMatch: 'Nenhum log',
 		toolTip: 'Ordenar',
-		columnHeaderTooltip: (column: MUIDataTableColumn) =>
-			`Ordenar por ${column.label}`
+		columnHeaderTooltip: (column: MUIDataTableColumn) => `Ordenar por ${column.label}`
 	},
 	pagination: {
 		next: 'Próxima página',

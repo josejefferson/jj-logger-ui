@@ -24,12 +24,7 @@ interface IProps {
 	setData: React.Dispatch<React.SetStateAction<any>>
 }
 
-export default function AutoRefreshDialog({
-	fetchData,
-	filter,
-	data,
-	setData
-}: IProps) {
+export default function AutoRefreshDialog({ fetchData, filter, data, setData }: IProps) {
 	const [open, setOpen] = React.useState(false)
 	const [autoUpdateEnabled, setAutoUpdateEnabled] = React.useState<boolean>()
 	const [autoUpdateInterval, setAutoUpdateInterval] = React.useState<number>()
@@ -122,17 +117,13 @@ export default function AutoRefreshDialog({
 		setOpen(false)
 	}
 
-	const handleContextMenu = (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-	) => {
+	const handleContextMenu = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
 		setOpen(true)
 	}
 
 	// Ativa/desativa a atualização automática
-	const handleChangeAutoUpdateEnabled = (
-		e: React.ChangeEvent<HTMLInputElement>
-	) => {
+	const handleChangeAutoUpdateEnabled = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setAutoUpdateEnabled(e.target.checked)
 	}
 
@@ -160,10 +151,7 @@ export default function AutoRefreshDialog({
 			<Dialog open={open} onClose={() => setOpen(false)} scroll="body">
 				<DialogTitle>
 					Atualizar automaticamente
-					<Switch
-						checked={!!autoUpdateEnabled}
-						onChange={handleChangeAutoUpdateEnabled}
-					/>
+					<Switch checked={!!autoUpdateEnabled} onChange={handleChangeAutoUpdateEnabled} />
 				</DialogTitle>
 
 				<DialogContent sx={{ minWidth: 280 }}>
@@ -177,9 +165,7 @@ export default function AutoRefreshDialog({
 							onChange={handleChangeAutoUpdateInterval}
 							InputProps={{
 								inputProps: { min: 1 },
-								endAdornment: (
-									<InputAdornment position="end">seg</InputAdornment>
-								)
+								endAdornment: <InputAdornment position="end">seg</InputAdornment>
 							}}
 						/>
 					</FormControl>

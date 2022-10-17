@@ -50,23 +50,15 @@ export default function ServersDialog({ fetchData }: IProps) {
 	const [impExpDialogOpen, setImpExpDialogOpen] = React.useState(false)
 	const [servers, setServers] = React.useState<IServer[]>()
 	const [currentServerID, setCurrentServerID] = React.useState<string>()
-	const currentServer = () =>
-		servers?.find((server) => server.id === currentServerID)
-	const [currentEditing, setCurrentEditing] =
-		React.useState<ICurrentEditingServer | null>(null)
+	const currentServer = () => servers?.find((server) => server.id === currentServerID)
+	const [currentEditing, setCurrentEditing] = React.useState<ICurrentEditingServer | null>(null)
 
 	React.useEffect(() => {
-		const savedServers = jsonParse(
-			localStorage.getItem('logs.servers'),
-			undefined,
-			defaultServer
-		)
+		const savedServers = jsonParse(localStorage.getItem('logs.servers'), undefined, defaultServer)
 		setServers(savedServers)
 		const urlParams = new URLSearchParams(window.location.search)
 		const currentServerName = urlParams.get('server')
-		const selectedServer = savedServers.find(
-			(server: IServer) => server.name === currentServerName
-		)
+		const selectedServer = savedServers.find((server: IServer) => server.name === currentServerName)
 		if (currentServerName && selectedServer) {
 			setCurrentServerID(selectedServer.id)
 		} else {
@@ -83,8 +75,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 
 	React.useEffect(() => {
 		if (servers) localStorage.setItem('logs.servers', JSON.stringify(servers))
-		if (currentServerID)
-			localStorage.setItem('logs.servers.current', currentServerID)
+		if (currentServerID) localStorage.setItem('logs.servers.current', currentServerID)
 	}, [servers, currentServerID])
 
 	const handleOK = () => {
@@ -165,9 +156,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 		}
 	}
 
-	const handleContextMenu = (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-	) => {
+	const handleContextMenu = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
 		setImpExpDialogOpen(true)
 	}
@@ -206,9 +195,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 								secondaryAction={
 									<>
 										<Tooltip title="Copiar link para acessar os logs deste servidor">
-											<IconButton
-												onClick={(e) => handleServerCopyLink(e, server)}
-											>
+											<IconButton onClick={(e) => handleServerCopyLink(e, server)}>
 												<LinkIcon />
 											</IconButton>
 										</Tooltip>
@@ -218,9 +205,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 											</IconButton>
 										</Tooltip>
 										<Tooltip title="Remover servidor">
-											<IconButton
-												onClick={(e) => handleServerRemove(e, server)}
-											>
+											<IconButton onClick={(e) => handleServerRemove(e, server)}>
 												<DeleteIcon />
 											</IconButton>
 										</Tooltip>
@@ -247,10 +232,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 			</Dialog>
 
 			{/* Importar e exportar servidores */}
-			<ImportExportDialog
-				open={impExpDialogOpen}
-				setOpen={setImpExpDialogOpen}
-			/>
+			<ImportExportDialog open={impExpDialogOpen} setOpen={setImpExpDialogOpen} />
 		</>
 	)
 }

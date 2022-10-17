@@ -29,9 +29,7 @@ export function downloadJSON(data: any) {
 	URL.revokeObjectURL(url)
 }
 
-export async function uploadJSON(
-	setData: React.Dispatch<React.SetStateAction<any>>
-) {
+export async function uploadJSON(setData: React.Dispatch<React.SetStateAction<any>>) {
 	const pickerOpts = {
 		types: [
 			{
@@ -50,8 +48,7 @@ export async function uploadJSON(
 		const data = await fileData.text()
 		try {
 			const jsonContent = JSON.parse(data)
-			if (!Array.isArray(jsonContent))
-				throw new Error('JSON content is not an Array')
+			if (!Array.isArray(jsonContent)) throw new Error('JSON content is not an Array')
 			setData(jsonContent)
 		} catch {
 			alert('O conteúdo do arquivo é inválido')

@@ -22,19 +22,13 @@ interface IProps {
 	onDone: (...args: any) => any
 }
 
-export default function ServerEditDialog({
-	server,
-	editing = false,
-	onDone = () => {}
-}: IProps) {
+export default function ServerEditDialog({ server, editing = false, onDone = () => {} }: IProps) {
 	const [serverName, setServerName] = React.useState(server?.name)
 	const [serverURL, setServerURL] = React.useState(server?.url)
 	const [serverUsername, setServerUsername] = React.useState(server?.username)
 	const [serverPassword, setServerPassword] = React.useState(server?.password)
 	const [mongoDBURL, setMongoDBURL] = React.useState(server?.mongoDB)
-	const [mongoDBCollection, setMongoDBCollection] = React.useState(
-		server?.mongoDBCollection
-	)
+	const [mongoDBCollection, setMongoDBCollection] = React.useState(server?.mongoDBCollection)
 	const [type, setType] = React.useState(server?.type || 0)
 
 	const handleOK = () => {
@@ -54,10 +48,7 @@ export default function ServerEditDialog({
 		})
 	}
 
-	const handleTabChange = (
-		_e: React.SyntheticEvent<Element, Event>,
-		newTab: number
-	) => {
+	const handleTabChange = (_e: React.SyntheticEvent<Element, Event>, newTab: number) => {
 		setType(newTab)
 	}
 
@@ -85,11 +76,7 @@ export default function ServerEditDialog({
 						value={serverName}
 					/>
 
-					<Box
-						role="tabpanel"
-						hidden={type !== 0}
-						sx={{ width: 500, maxWidth: '100%' }}
-					>
+					<Box role="tabpanel" hidden={type !== 0} sx={{ width: 500, maxWidth: '100%' }}>
 						<TextField
 							autoFocus
 							fullWidth
@@ -122,11 +109,7 @@ export default function ServerEditDialog({
 						/>
 					</Box>
 
-					<Box
-						role="tabpanel"
-						hidden={type !== 1}
-						sx={{ width: 500, maxWidth: '100%' }}
-					>
+					<Box role="tabpanel" hidden={type !== 1} sx={{ width: 500, maxWidth: '100%' }}>
 						<TextField
 							autoFocus
 							fullWidth

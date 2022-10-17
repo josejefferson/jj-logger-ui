@@ -20,11 +20,7 @@ interface IProps {
 	setFilter: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
-export default function DBFilterDialog({
-	fetchData,
-	filter,
-	setFilter
-}: IProps) {
+export default function DBFilterDialog({ fetchData, filter, setFilter }: IProps) {
 	const [open, setOpen] = React.useState(false)
 	const [value, setValue] = React.useState(filter)
 	const [saveSnackbar, setSaveSnackbar] = React.useState(false)
@@ -70,10 +66,7 @@ export default function DBFilterDialog({
 	return (
 		<>
 			<Tooltip title={lang.toolbar.dbFilter} disableFocusListener>
-				<IconButton
-					aria-label={lang.toolbar.dbFilter}
-					onClick={() => setOpen(true)}
-				>
+				<IconButton aria-label={lang.toolbar.dbFilter} onClick={() => setOpen(true)}>
 					<FilterAltIcon />
 				</IconButton>
 			</Tooltip>
@@ -98,11 +91,7 @@ export default function DBFilterDialog({
 						variant="filled"
 					/>
 
-					<Button
-						fullWidth
-						onClick={handleReset}
-						startIcon={<PublishedWithChangesIcon />}
-					>
+					<Button fullWidth onClick={handleReset} startIcon={<PublishedWithChangesIcon />}>
 						Redefinir para o padrão
 					</Button>
 					<Button
@@ -113,11 +102,7 @@ export default function DBFilterDialog({
 					>
 						Salvar como padrão
 					</Button>
-					<Button
-						fullWidth
-						onClick={handleClear}
-						startIcon={<RestartAltIcon />}
-					>
+					<Button fullWidth onClick={handleClear} startIcon={<RestartAltIcon />}>
 						Limpar filtros
 					</Button>
 				</DialogContent>

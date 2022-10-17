@@ -91,8 +91,7 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 			display: false,
 			setCellProps: () => ({ style: { whiteSpace: 'nowrap' } }),
 			customBodyRenderLite: (dataIndex) => {
-				if (React.isValidElement(data[dataIndex]?.info))
-					return data[dataIndex].info
+				if (React.isValidElement(data[dataIndex]?.info)) return data[dataIndex].info
 				const hideProduction = data[dataIndex]?.hideProduction
 				const hideConsole = data[dataIndex]?.hideConsole
 
@@ -116,8 +115,7 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 		options: {
 			setCellProps: () => ({ style: { padding: '0' } }),
 			customBodyRenderLite: (dataIndex) => {
-				if (React.isValidElement(data[dataIndex]?.info))
-					return data[dataIndex].info
+				if (React.isValidElement(data[dataIndex]?.info)) return data[dataIndex].info
 				const color = data[dataIndex]?.color
 				return <Color color={color} />
 			}

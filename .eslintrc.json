@@ -8,11 +8,7 @@
 	},
 	"plugins": ["only-warn"],
 	"ignorePatterns": ["*.min.js"],
-	"extends": [
-		"next/core-web-vitals",
-		"plugin:@next/next/recommended",
-		"eslint:recommended"
-	],
+	"extends": ["next/core-web-vitals", "plugin:@next/next/recommended", "eslint:recommended"],
 	"parserOptions": {
 		"ecmaVersion": 12,
 		"ecmaFeatures": {

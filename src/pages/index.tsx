@@ -59,14 +59,9 @@ const Logs = () => {
 
 	let currentServerName = React.useRef('')
 	React.useEffect(() => {
-		const servers = jsonParse(
-			localStorage.getItem('logs.servers'),
-			undefined,
-			[]
-		)
+		const servers = jsonParse(localStorage.getItem('logs.servers'), undefined, [])
 		const currentServerID = localStorage.getItem('logs.servers.current') || ''
-		const currentServer =
-			servers.find((server: IServer) => server.id === currentServerID) || {}
+		const currentServer = servers.find((server: IServer) => server.id === currentServerID) || {}
 		currentServerName.current =
 			!currentServer.name || currentServer.name === '(Servidor padrão)'
 				? ''

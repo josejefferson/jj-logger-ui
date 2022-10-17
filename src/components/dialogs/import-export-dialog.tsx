@@ -43,11 +43,7 @@ export default function ImportExportDialog({ open, setOpen }: IProps) {
 	}
 
 	const handleExport = () => {
-		const servers = jsonParse(
-			localStorage.getItem('logs.servers'),
-			undefined,
-			[]
-		)
+		const servers = jsonParse(localStorage.getItem('logs.servers'), undefined, [])
 		downloadFile(servers)
 	}
 
@@ -58,17 +54,8 @@ export default function ImportExportDialog({ open, setOpen }: IProps) {
 
 				<DialogContent sx={{ minWidth: 280 }}>
 					<Box textAlign="center">
-						<Button
-							onClick={() => {}}
-							startIcon={<FileUploadIcon />}
-							component="label"
-						>
-							<input
-								hidden
-								type="file"
-								accept="application/json"
-								onChange={handleImport}
-							/>
+						<Button onClick={() => {}} startIcon={<FileUploadIcon />} component="label">
+							<input hidden type="file" accept="application/json" onChange={handleImport} />
 							Importar servidores
 						</Button>
 					</Box>
