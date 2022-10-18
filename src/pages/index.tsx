@@ -62,10 +62,15 @@ const Logs = () => {
 		const servers = jsonParse(localStorage.getItem('logs.servers'), undefined, [])
 		const currentServerID = localStorage.getItem('logs.servers.current') || ''
 		const currentServer = servers.find((server: IServer) => server.id === currentServerID) || {}
-		currentServerName.current =
-			!currentServer.name || currentServer.name === '(Servidor padrão)'
-				? ''
-				: ` - ${currentServer.name}`
+		const urlParams = new URLSearchParams(window.location.search)
+		if (urlParams.get('useFrameParentData')) {
+			currentServerName.current = ''
+		} else {
+			currentServerName.current =
+				!currentServer.name || currentServer.name === '(Servidor padrão)'
+					? ''
+					: ` - ${currentServer.name}`
+		}
 	})
 
 	return (
