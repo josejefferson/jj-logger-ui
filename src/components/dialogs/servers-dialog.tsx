@@ -54,9 +54,10 @@ export default function ServersDialog({ fetchData }: IProps) {
 	const [currentEditing, setCurrentEditing] = React.useState<ICurrentEditingServer | null>(null)
 
 	React.useEffect(() => {
+		const urlParams = new URLSearchParams(window.location.search)
+		if (urlParams.get('useFrameParentData')) return
 		const savedServers = jsonParse(localStorage.getItem('logs.servers'), undefined, defaultServer)
 		setServers(savedServers)
-		const urlParams = new URLSearchParams(window.location.search)
 		const currentServerName = urlParams.get('server')
 		const selectedServer = savedServers.find((server: IServer) => server.name === currentServerName)
 		if (currentServerName && selectedServer) {
@@ -74,6 +75,8 @@ export default function ServersDialog({ fetchData }: IProps) {
 	}, [])
 
 	React.useEffect(() => {
+		const urlParams = new URLSearchParams(window.location.search)
+		if (urlParams.get('useFrameParentData')) return
 		if (servers) localStorage.setItem('logs.servers', JSON.stringify(servers))
 		if (currentServerID) localStorage.setItem('logs.servers.current', currentServerID)
 	}, [servers, currentServerID])
@@ -163,7 +166,7 @@ export default function ServersDialog({ fetchData }: IProps) {
 
 	return (
 		<>
-			<Tooltip title={lang.toolbar.settings} disableFocusListener>
+			<Tooltip title={lang.toolbar.settings} disableFocusListener hidden={!servers}>
 				<IconButton
 					aria-label={lang.toolbar.settings}
 					onClick={() => setOpen(true)}

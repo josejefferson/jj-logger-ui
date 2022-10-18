@@ -71,10 +71,9 @@ export const Toolbar =
 				/>
 
 				{/* Botão de configurar os servidores */}
-				{typeof window !== 'undefined' &&
-					!new URLSearchParams(window.location.search).get('useFrameParentData') && (
-						<ServersDialog fetchData={(filter: string | undefined) => fetchData(setData, filter)} />
-					)}
+				{typeof window !== 'undefined' && (
+					<ServersDialog fetchData={(filter: string | undefined) => fetchData(setData, filter)} />
+				)}
 
 				{/* Botão de atualizar dados */}
 				<AutoRefreshDialog

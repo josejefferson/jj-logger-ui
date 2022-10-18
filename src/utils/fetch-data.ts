@@ -59,7 +59,7 @@ export async function getFetchedData(filter?: string, afterDate?: Date) {
 }
 
 export async function getIFrameData(filter?: string, afterDate?: Date): Promise<any> {
-	if (window.parent) {
+	if (window.self !== window.top) {
 		parent.postMessage(['fetch', { filter, afterDate }], '*')
 
 		const { data }: MessageEvent = await new Promise((resolve) => {
@@ -68,7 +68,9 @@ export async function getIFrameData(filter?: string, afterDate?: Date): Promise<
 
 		if (!Array.isArray(data)) throw new Error('Invalid data')
 		const [command, content] = data
-		if (command !== 'logs') throw new Error('Invalid command')
+		if (command !== 'logs') throw new Error(`Invalid command "${command}"`)
 		return { data: content }
+	} else {
+		throw new Error('This is not an iframe')
 	}
 }
