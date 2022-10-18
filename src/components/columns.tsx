@@ -5,7 +5,7 @@ import 'dayjs/locale/pt-br'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import type { MUIDataTableColumnDef } from 'mui-datatables'
 import React from 'react'
-import { chromeDark, ObjectInspector } from 'react-inspector'
+import { chromeDark, chromeLight, ObjectInspector } from 'react-inspector'
 import { IData } from 'src/types'
 import Color from './color'
 import { customDateFilter } from './custom-filters'
@@ -13,6 +13,10 @@ import Pill from './pill'
 
 dayjs.locale('pt-br')
 dayjs.extend(relativeTime)
+
+const lightTheme =
+	typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('lightTheme')
+const chromeTheme = lightTheme ? chromeLight : chromeDark
 
 export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 	{
@@ -140,7 +144,7 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 									data={content}
 									// @ts-ignore
 									theme={{
-										...chromeDark,
+										...chromeTheme,
 										...{ BASE_BACKGROUND_COLOR: 'transparent' }
 									}}
 								/>
@@ -182,7 +186,7 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 						data={value}
 						// @ts-ignore
 						theme={{
-							...chromeDark,
+							...chromeTheme,
 							...{ BASE_BACKGROUND_COLOR: 'transparent' }
 						}}
 					/>
