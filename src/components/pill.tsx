@@ -9,7 +9,8 @@ export default function Pill({ level, children }: IProps) {
 		WARNING: '#ffc107',
 		ERROR: '#dc3545',
 		INFO: '#0d6efd',
-		DEBUG: '#111111'
+		DEBUG: '#111111',
+		EVENT: '#6f42c1'
 	}
 
 	return (
