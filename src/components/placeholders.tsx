@@ -2,11 +2,14 @@ import LinearProgress from '@mui/material/LinearProgress'
 
 // Dados em carregamento
 export const defaultData = {
+	_id: <LinearProgress />,
 	date: <LinearProgress />,
 	level: <LinearProgress />,
-	info: <LinearProgress />,
 	title: <LinearProgress />,
 	code: <LinearProgress />,
+	tags: <LinearProgress />,
+	info: <LinearProgress />,
+	color: <LinearProgress />,
 	contents: <LinearProgress />,
 	details: <LinearProgress />
 }

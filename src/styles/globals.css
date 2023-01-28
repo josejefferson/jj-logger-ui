@@ -45,3 +45,13 @@ a {
 		display: none;
 	}
 }
+
+.MuiTabs-scrollButtons.Mui-disabled {
+	opacity: 0.3;
+}
+
+@media (max-width: 450px) {
+	.MuiTablePagination-selectLabel + .MuiInputBase-root {
+		margin-right: 8px;
+	}
+}

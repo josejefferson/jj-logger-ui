@@ -88,6 +88,14 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 	},
 
 	{
+		label: 'Tags',
+		name: 'tags',
+		options: {
+			display: false
+		}
+	},
+
+	{
 		label: 'Info',
 		name: 'info',
 		options: {
@@ -130,6 +138,7 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 		label: 'Conteúdo',
 		name: 'contents',
 		options: {
+			setCellProps: () => ({ style: { minWidth: '300px' } }),
 			filterType: 'textField',
 			customBodyRender: (value) => {
 				if (value === undefined) return <></>
@@ -166,7 +175,10 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 		name: 'details',
 		options: {
 			sort: false,
-			setCellProps: () => ({ className: 'details-cell' }),
+			setCellProps: () => ({
+				className: 'details-cell',
+				style: { minWidth: '300px' }
+			}),
 			filterType: 'textField',
 			filterOptions: {
 				names: [],

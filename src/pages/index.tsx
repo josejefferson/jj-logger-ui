@@ -49,6 +49,7 @@ const Logs = () => {
 		print: false,
 		resizableColumns: resizableColumns,
 		onChangeRowsPerPage: (n: number) => setRowsPerPage(n),
+		responsive: 'standard',
 		rowsPerPage,
 		rowsPerPageOptions: [10, 50, 100, 200, 500, 1000],
 		selectableRows: 'none',
