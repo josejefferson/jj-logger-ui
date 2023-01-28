@@ -18,7 +18,7 @@ export default async function fetchData(
 		return { data: [errorData] }
 	})
 
-	setData(data)
+	setData(data.data || data)
 }
 
 export async function getFetchedData(filter?: string, afterDate?: Date) {
