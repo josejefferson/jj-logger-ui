@@ -138,7 +138,7 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 		label: 'Conteúdo',
 		name: 'contents',
 		options: {
-			setCellProps: () => ({ style: { minWidth: '300px' } }),
+			setCellProps: () => ({ className: 'mobile-minWidth-300px' }),
 			filterType: 'textField',
 			customBodyRender: (value) => {
 				if (value === undefined) return <></>
@@ -176,8 +176,7 @@ export const columns = (data: IData[]): MUIDataTableColumnDef[] => [
 		options: {
 			sort: false,
 			setCellProps: () => ({
-				className: 'details-cell',
-				style: { minWidth: '300px' }
+				className: 'details-cell mobile-minWidth-300px'
 			}),
 			filterType: 'textField',
 			filterOptions: {

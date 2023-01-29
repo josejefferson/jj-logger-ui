@@ -54,4 +54,8 @@ a {
 	.MuiTablePagination-selectLabel + .MuiInputBase-root {
 		margin-right: 8px;
 	}
+
+	.mobile-minWidth-300px {
+		min-width: 300px;
+	}
 }
