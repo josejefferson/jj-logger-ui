@@ -32,7 +32,8 @@ const defaultServer: IServer[] = [
 		username: '',
 		password: '',
 		mongoDB: '',
-		mongoDBCollection: ''
+		mongoDBCollection: '',
+		useProxy: false
 	}
 ]
 
@@ -95,7 +96,8 @@ export default function ServersDialog({ fetchData }: IProps) {
 			username: '',
 			password: '',
 			mongoDB: '',
-			mongoDBCollection: ''
+			mongoDBCollection: '',
+			useProxy: false
 		}
 
 		setCurrentEditing({ server: newServer, editing: false })

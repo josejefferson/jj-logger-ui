@@ -5,6 +5,7 @@ export interface IServer {
 	url: string
 	username: string
 	password: string
+	useProxy: boolean
 	mongoDB?: string
 	mongoDBCollection?: string
 }

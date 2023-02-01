@@ -1,3 +1,4 @@
+import { FormGroup, FormControlLabel, Checkbox } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -29,6 +30,7 @@ export default function ServerEditDialog({ server, editing = false, onDone = () 
 	const [serverPassword, setServerPassword] = React.useState(server?.password)
 	const [mongoDBURL, setMongoDBURL] = React.useState(server?.mongoDB)
 	const [mongoDBCollection, setMongoDBCollection] = React.useState(server?.mongoDBCollection)
+	const [useProxy, setUseProxy] = React.useState(server?.useProxy ?? false)
 	const [type, setType] = React.useState(server?.type || 0)
 
 	const handleOK = () => {
@@ -43,7 +45,8 @@ export default function ServerEditDialog({ server, editing = false, onDone = () 
 				username: serverUsername,
 				password: serverPassword,
 				mongoDB: mongoDBURL,
-				mongoDBCollection: mongoDBCollection
+				mongoDBCollection: mongoDBCollection,
+				useProxy: useProxy
 			}
 		})
 	}
@@ -107,6 +110,15 @@ export default function ServerEditDialog({ server, editing = false, onDone = () 
 							type="password"
 							value={serverPassword}
 						/>
+
+						<FormGroup>
+							<FormControlLabel
+								control={
+									<Checkbox checked={useProxy} onChange={(e) => setUseProxy(e.target.checked)} />
+								}
+								label="Usar proxy"
+							/>
+						</FormGroup>
 					</Box>
 
 					<Box role="tabpanel" hidden={type !== 1} sx={{ width: 500, maxWidth: '100%' }}>
@@ -132,7 +144,7 @@ export default function ServerEditDialog({ server, editing = false, onDone = () 
 							value={mongoDBCollection}
 						/>
 
-						<Box height={(40 + 16) * 1}></Box>
+						<Box height={(40 + 16 + 42) * 1}></Box>
 					</Box>
 				</DialogContent>
 

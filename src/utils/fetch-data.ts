@@ -40,7 +40,7 @@ export async function getFetchedData(filter?: string, afterDate?: Date) {
 	)
 
 	if (!currentServer) throw new Error('Server not configured')
-	let { type, url, username, password, mongoDB, mongoDBCollection } = currentServer
+	let { type, url, username, password, mongoDB, mongoDBCollection, useProxy } = currentServer
 	if (!url && !mongoDB) throw new Error('Server not configured')
 	if (type === 1) {
 		url = '/api/mongodb?url=' + encodeURIComponent(mongoDB || '')
@@ -54,6 +54,8 @@ export async function getFetchedData(filter?: string, afterDate?: Date) {
 			after: afterDate?.toISOString()
 		}
 	}
+
+	if (useProxy) url = '/api/proxy?url=' + encodeURIComponent(url)
 
 	return axios.get<IData[]>(url, options)
 }

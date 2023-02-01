@@ -19,14 +19,14 @@ export default createTheme({
 		MUIDataTableHeadCell: {
 			styleOverrides: {
 				root: {
-						padding: '0 16px'
+					padding: '0 16px'
 				}
 			}
 		},
 		MUIDataTableToolbar: {
 			styleOverrides: {
 				root: {
-					'@media (max-width: 450px)':{
+					'@media (max-width: 450px)': {
 						minHeight: '48px',
 						paddingLeft: '0',
 						paddingRight: '16px'
